@@ -381,11 +381,11 @@
 async function loadReviews(){
   const container = document.getElementById('reviews-container');
         // TODO: вставьте ваш API key и spreadsheet ID
-      const apiKey = "AIzaSyCZBk-b-T1VHCZKML88ysMfopBhqCLDa7E";
+      const apiKey = "";
       const spreadsheetId = "13y9sdqBPcefF3oSRRNzBgdFxn2O2DrJ8dkIOA3zINqk";
       const range = "Отзывы!A2:C";
 
-      if (!apiKey || apiKey.includes("AIzaSyCZBk-b-T1VHCZKML88ysMfopBhqCLDa7E") || !spreadsheetId || spreadsheetId.includes("13y9sdqBPcefF3oSRRNzBgdFxn2O2DrJ8dkIOA3zINqk")) {
+      if (!apiKey || apiKey.includes("") || !spreadsheetId || spreadsheetId.includes("13y9sdqBPcefF3oSRRNzBgdFxn2O2DrJ8dkIOA3zINqk")) {
         container.innerHTML = '<p>Отзывы временно недоступны. Вставьте Google API Key и Spreadsheet ID в код.</p>';
         return;
       }
@@ -438,4 +438,5 @@ async function loadReviews(){
   </script>
 </body>
 </html>
+
 
