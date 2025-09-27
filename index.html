@@ -146,7 +146,52 @@
         <li>Страхование грузов и гражданской ответственности.</li>
       </ul>
     </section>
+<div style="text-align: center; margin: 40px 0;">
+    <a href="https://docs.google.com/spreadsheets/d/1iaAvMcfgPbyMDA6ZEsqO-jtwVYPehjTfANngDDWmkwo/edit?usp=sharing" 
+       target="_blank" 
+       class="price-button">
+        📋 Прайс-лист оборудования
+    </a>
+    <p style="margin-top: 10px; color: #666; font-size: 14px;">
+        Откроется в новой вкладке • 8 категорий оборудования
+    </p>
+</div>
 
+<style>
+.price-button {
+    display: inline-block;
+    padding: 18px 36px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    border: none;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+.price-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    background: linear-gradient(135deg, #218838, #1ea085);
+    color: white;
+    text-decoration: none;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .price-button {
+        padding: 16px 24px;
+        font-size: 18px;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+</style>
     <section class="container" id="feedback">
       <h2>Обратная связь</h2>
       <form id="contact-form" class="feedback-form" action="https://formspree.io/f/mdkljpdv" method="POST" novalidate>
@@ -407,6 +452,7 @@ document.addEventListener("DOMContentLoaded", loadReviews);
 
 </body>
 </html>
+
 
 
 
