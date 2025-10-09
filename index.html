@@ -1,11 +1,454 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Тест GitHub Pages</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Компания Bisen — Автоматизация и страхование</title>
+  <meta name="description" content="Автоматизация торговых точек, подключение ПО BIRSAN и Paloma365, страхование автомобилей." />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary-1:#024180; --primary-2:#5563DE; --accent:#25D366; --telegram:#0088cc; --muted:#f5f7fb;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:var(--muted);
+      color:#222;
+      line-height:1.6;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    /* HEADER & SLIDER */
+    header{background:linear-gradient(135deg,var(--primary-1),var(--primary-2));color:#fff;padding:24px 16px;text-align:center}
+    header h1{margin:0;font-size:28px} header p{margin:8px 0 0;opacity:.95}
+
+    .slider{position:relative;width:100%;max-height:55vh;overflow:hidden;margin-top:16px;border-radius:12px}
+    .slides{position:relative;width:100%;height:55vh}
+    .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease-in-out;display:flex;align-items:center;justify-content:center}
+    .slide.active{opacity:1;z-index:1}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.28)}
+    .slide-text{position:absolute;bottom:16%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.5);color:#fff;padding:12px 20px;border-radius:10px;font-size:20px;backdrop-filter:blur(4px)}
+
+    .nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);border:0;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:20px;z-index:10}
+    .nav-prev{left:12px} .nav-next{right:12px}
+
+    .dots{position:absolute;bottom:12px;left:0;right:0;text-align:center}
+    .dot{display:inline-block;width:10px;height:10px;margin:0 6px;background:rgba(255,255,255,.5);border-radius:50%;cursor:pointer}
+    .dot.active{background:#fff}
+
+    /* CONTENT */
+    .container{max-width:1000px;margin:28px auto;background:#fff;border-radius:12px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+    h2{color:var(--primary-2);margin:0 0 14px}
+
+    /* CONTACTS */
+    .contacts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px}
+    .contacts a{color:#fff;text-decoration:none;padding:10px 14px;border-radius:20px;font-weight:600}
+    .contacts a.tel{background:#007bff} .contacts a.whatsapp{background:var(--accent)} .contacts a.email{background:#ff9800} .contacts a.telegram{background:var(--telegram)}
+    .contacts a.instagram{background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)}
+
+    .map{margin-top:16px;border-radius:10px;overflow:hidden}
+
+    /* Formspree */
+    .feedback-form{max-width:600px;margin:0 auto}
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;margin-bottom:6px;font-weight:600;color:var(--primary-1)}
+    .form-group input,.form-group textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:15px}
+    .form-submit-btn{background:var(--primary-2);color:#fff;border:0;padding:12px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+    .form-status{margin-top:12px;text-align:center}
+    .form-status.success{color:green;}
+    .form-status.error{color:red;}
+
+    /* Review stars input */
+    .stars-input{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:6px}
+    .stars-input input{display:none}
+    .stars-input label{font-size:30px;color:#ccc;cursor:pointer;user-select:none}
+    .stars-input input:checked ~ label, .stars-input label:hover, .stars-input label:hover ~ label{color:#ff9800}
+
+    /* Reviews list */
+    .reviews-block{max-width:700px;margin:0 auto;background:#fff;padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.04)}
+    .review-item{border-bottom:1px solid #f0f0f0;padding:12px 0}
+    .review-item:last-child{border-bottom:none}
+    .review-item h4{margin:0 0 6px;color:var(--primary-1)}
+    .stars-display{color:#ff9800;margin-bottom:6px;font-size:16px}
+
+    /* floating social */
+    .social-floating{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:200}
+    .social-fab{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:18px}
+    .social-fab.whatsapp{background:var(--accent)} .social-fab.telegram{background:var(--telegram)} .social-fab.instagram{background:linear-gradient(45deg,#fd5949,#d6249f,#285AEB)}
+
+    footer{margin-top:auto;background:linear-gradient(135deg,var(--primary-1),var(--primary-2));color:#fff;text-align:center;padding:20px}
+
+    @media (max-width:820px){ .reviews-block{padding:14px} .slide-text{font-size:16px;bottom:14%} }
+  </style>
 </head>
 <body>
-  <h1 style="text-align:center; margin-top: 100px;">✅ GitHub Pages работает!</h1>
-  <p style="text-align:center;">Если ты видишь это сообщение — значит всё настроено правильно.</p>
+
+  <header>
+    <h1>Компания "Bisen"</h1>
+    <p>Автоматизация торговых точек • Подключение ПО "BIRSAN", "Webkassa", "Wipon" и "Paloma365" • Страхование автомобилей</p>
+
+    <div class="slider" aria-label="Главный слайдер">
+      <div class="slides">
+        <div class="slide active">
+          <img src="images/automation.jpg" alt="Автоматизация магазинов">
+          <div class="overlay"></div>
+          <div class="slide-text">Автоматизация магазинов</div>
+        </div>
+
+        <div class="slide">
+          <img src="images/Car.jpg" alt="Страхование автомобилей">
+          <div class="overlay"></div>
+          <div class="slide-text">Страхование автомобилей</div>
+        </div>
+      </div>
+
+      <button class="nav-btn nav-prev" aria-label="Предыдущий">❮</button>
+      <button class="nav-btn nav-next" aria-label="Следующий">❯</button>
+
+      <div class="dots" aria-hidden="false"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" id="about">
+      <h2>О компании</h2>
+      <p>Компания Bisen внедряет современные технологии в розничную и оптовую торговлю. Мы предоставляем полный спектр услуг: от установки и настройки ПО до техподдержки и обучения персонала. Партнёры: Webkassa, BIRSAN, Wipon и Paloma365.</p>
+    </section>
+
+    <section class="container" id="services">
+      <h2>Услуги автоматизации</h2>
+      <ul>
+        <h3>Внедрение и поддержка ПО</h3>
+<p>Профессиональная настройка систем: <strong>BIRSAN, WEBKASSA, Paloma365 и WIPON</strong>. 
+Полное обучение ваших сотрудников и круглосуточная техническая поддержка.</p>
+        <li>Автоматизация торговых точек и складов.
+Повышаем эффективность розничных магазинов, оптовых складов, кафе, ресторанов и столовых.</li>
+        <li>Продажа и настройка кассового оборудования.
+Подбираем и устанавливаем современные кассы, сканеры, принтеры чеков и другое оборудование.</li>
+        <li>Комплексное решение «под ключ».
+От консультации и подбора оборудования до полного запуска и сопровождения вашего бизнеса.</li>
+      </ul>
+
+      <h2 style="margin-top:18px;">Услуги страхования</h2>
+      <ul>
+        <li>ОСАГО для нерезидентов России.
+ОСАГО (Обязательное Страхование АвтоГражданской Ответственности) — страхование автомобилей, въезжающих в страну временного пребывания.</li>
+        <li>Страхование ОСАГО в Кыргызстане для резидентов и нерезидентов.</li>
+        <li>ОГПО для иностранных граждан.
+ОГПО (Обязательное Гражданско-Правовое Обязательство) — обязательная страховка для автомобилей, временно въезжающих на территорию Казахстана. Оформляем полисы для нерезидентов быстро и официально.</li>
+        <li>ОГПО для резидентов Казахстана.</li>
+        <li>Добровольное медицинское страхование для нерезидентов РФ.</li>
+        <li>Страхование грузов и гражданской ответственности.</li>
+      </ul>
+    </section>
+<div style="text-align: center; margin: 40px 0;">
+    <a href="https://docs.google.com/spreadsheets/d/1iaAvMcfgPbyMDA6ZEsqO-jtwVYPehjTfANngDDWmkwo/edit?usp=sharing" 
+       target="_blank" 
+       class="price-button">
+        📋 Прайс-лист оборудования
+    </a>
+    <p style="margin-top: 10px; color: #666; font-size: 14px;">
+        8 категорий оборудования
+    </p>
+</div>
+
+<style>
+.price-button {
+    display: inline-block;
+    padding: 18px 36px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    border: none;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+.price-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    background: linear-gradient(135deg, #218838, #1ea085);
+    color: white;
+    text-decoration: none;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .price-button {
+        padding: 16px 24px;
+        font-size: 18px;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+</style>
+    <section class="container" id="feedback">
+      <h2>Обратная связь</h2>
+      <form id="contact-form" class="feedback-form" action="https://formspree.io/f/mdkljpdv" method="POST" novalidate>
+        <div class="form-group"><label for="cf-name">Ваше имя</label><input id="cf-name" name="name" type="text" required></div>
+        <div class="form-group"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required></div>
+        <div class="form-group"><label for="cf-phone">Телефон</label><input id="cf-phone" name="phone" type="tel" placeholder="+7..."></div>
+        <div class="form-group"><label for="cf-message">Сообщение</label><textarea id="cf-message" name="message" rows="5" required></textarea></div>
+        <button type="submit" class="form-submit-btn">Отправить сообщение</button>
+        <div id="form-status" class="form-status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section class="container" id="contacts">
+      <h2>Контакты</h2>
+      <div class="contacts">
+        <a class="tel" href="tel:+77014110470">📞 Позвонить</a>
+        <a class="whatsapp" href="https://wa.me/77014110470" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="email" href="mailto:b.s.m@bk.ru">📧 Email</a>
+        <a class="telegram" href="https://t.me/samat_bisen" target="_blank" rel="noopener">✈ Telegram</a>
+        <a class="instagram" href="https://instagram.com/almaz_market_sarkamys" target="_blank" rel="noopener">📷 Instagram</a>
+      </div>
+
+      <div class="map" aria-hidden="false" style="margin-top:12px;">
+<iframe
+  src="https://www.google.com/maps?q=47.096609,51.858638&z=17&output=embed"
+  width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+        <div style="text-align:center;margin-top:10px;">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=47.096609,51.858638" target="_blank" rel="noopener" class="form-submit-btn">Построить маршрут</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="leave-review">
+      <h2>Оставить отзыв</h2>
+
+      <div class="reviews-block" style="max-width:700px;margin:0 auto;">
+        <form id="review-form" class="feedback-form" novalidate>
+          <div class="form-group"><label for="r-name">Ваше имя</label><input id="r-name" name="name" type="text" required></div>
+          <div class="form-group"><label for="r-text">Отзыв</label><textarea id="r-text" name="review" rows="4" required></textarea></div>
+
+          <div class="form-group">
+            <label>Оценка</label>
+            <div class="stars-input" role="radiogroup" aria-label="Оценка">
+              <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5">★</label>
+              <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4">★</label>
+              <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3">★</label>
+              <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2">★</label>
+              <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1">★</label>
+            </div>
+          </div>
+
+          <button type="submit" class="form-submit-btn">Отправить отзыв</button>
+          <div id="review-status" class="form-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="container" id="reviews-section">
+      <h2>Отзывы клиентов</h2>
+      <div class="reviews-block" id="reviews-container">
+        <p>Загрузка отзывов...</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="social-floating" aria-hidden="false">
+    <a class="social-fab whatsapp" href="https://wa.me/77014110470" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+    <a class="social-fab telegram" href="https://t.me/samat_bisen" target="_blank" rel="noopener" aria-label="Telegram">✈</a>
+    <a class="social-fab instagram" href="https://instagram.com/almaz_market_sarkamys" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+  </div>
+
+  <footer>
+    © 2025 Бисенов С.М. Все права защищены.
+  </footer>
+
+  <script>
+    /* ===========================
+       SLIDER
+       =========================== */
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.slide');
+      const dotsContainer = document.querySelector('.dots');
+      const prevBtn = document.querySelector('.nav-prev');
+      const nextBtn = document.querySelector('.nav-next');
+
+      if (!slides.length || !dotsContainer) return;
+
+      let current = 0;
+      let intervalId = null;
+
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (idx === 0 ? ' active' : '');
+        dot.dataset.index = idx;
+        dot.addEventListener('click', () => { showSlide(idx); restart(); });
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = dotsContainer.querySelectorAll('.dot');
+
+      function showSlide(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function nextSlide() { showSlide(current + 1); }
+      function prevSlide() { showSlide(current - 1); }
+
+      if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(intervalId); nextSlide(); restart(); });
+      if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(intervalId); prevSlide(); restart(); });
+
+      function start() { intervalId = setInterval(nextSlide, 5000); }
+      function stop() { clearInterval(intervalId); intervalId = null; }
+      function restart() { stop(); start(); }
+
+      const sliderEl = document.querySelector('.slider');
+      if (sliderEl) {
+        sliderEl.addEventListener('mouseenter', stop);
+        sliderEl.addEventListener('mouseleave', start);
+      }
+
+      start();
+      showSlide(0);
+    });
+
+    /* ===========================
+       Formspree AJAX
+       =========================== */
+    (function(){
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      if (!form) return;
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        status.textContent = 'Отправка...';
+        try {
+          const res = await fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            status.textContent = 'Спасибо! Ваше сообщение отправлено.';
+            status.className = 'form-status success';
+            form.reset();
+          } else {
+            const data = await res.json().catch(()=>null);
+            status.textContent = data && data.errors ? data.errors.map(x=>x.message).join(', ') : 'Ошибка при отправке формы.';
+            status.className = 'form-status error';
+          }
+        } catch(err) {
+          status.textContent = 'Ошибка при отправке формы. Проверьте соединение.';
+          status.className = 'form-status error';
+        }
+      });
+    })();
+
+    /* ===========================
+/* ===========================
+   ОТПРАВКА ОТЗЫВОВ
+   =========================== */
+(function(){
+  const form = document.getElementById('review-form');
+  const status = document.getElementById('review-status');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    status.textContent = 'Отправка...';
+
+    try {
+      const formData = new FormData(form);
+
+      // отправляем данные в Google Script
+      const res = await fetch("https://script.google.com/macros/s/AKfycbw6ldajY-HViVZpbGaKJGBh-VW7_wMoti1U3tq01ZRc6DMX8L6n4m-jJF8GZtgZUB_XQA/exec", {
+        method: 'POST',
+        body: formData
+      });
+
+      if (res.ok) {
+        status.textContent = 'Спасибо за отзыв!';
+        status.className = 'form-status success';
+        form.reset();
+
+        // сразу обновляем список отзывов
+        loadReviews();
+      } else {
+        status.textContent = 'Ошибка при отправке отзыва.';
+        status.className = 'form-status error';
+      }
+    } catch(err) {
+      console.error(err);
+      status.textContent = 'Ошибка соединения.';
+      status.className = 'form-status error';
+    }
+  });
+})();
+
+
+/* ===========================
+   ЗАГРУЗКА ОТЗЫВОВ
+   =========================== */
+async function loadReviews() {
+  const container = document.getElementById('reviews-container');
+  container.innerHTML = "<p>Загрузка отзывов...</p>";
+
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbw6ldajY-HViVZpbGaKJGBh-VW7_wMoti1U3tq01ZRc6DMX8L6n4m-jJF8GZtgZUB_XQA/exec");
+    if (!res.ok) throw new Error("Ошибка сети");
+
+    const data = await res.json();
+
+    if (!data || !data.length) {
+      container.innerHTML = "<p>Пока нет отзывов. Будьте первым!</p>";
+      return;
+    }
+
+    container.innerHTML = "";
+    data.forEach(r => {
+      const name = escapeHtml(r.name || "Аноним");
+      const review = escapeHtml(r.review || "");
+      const rating = Number(r.rating) || 0;
+
+      // ✅ форматирование даты
+      let formattedDate = "";
+      if (r.date) {
+        const d = new Date(r.date);
+        formattedDate = d.toLocaleDateString("ru-RU");
+      }
+
+      container.innerHTML += `
+        <div class="review-item">
+          <h4>${name}</h4>
+          ${formattedDate ? `<div style="font-size:13px;color:#777;">${formattedDate}</div>` : ""}
+          <div class="stars-display">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</div>
+          <p>${review}</p>
+        </div>
+      `;
+    });
+  } catch (err) {
+    console.error("Ошибка загрузки отзывов:", err);
+    container.innerHTML = "<p>Не удалось загрузить отзывы. Попробуйте позже.</p>";
+  }
+}
+
+function escapeHtml(text) {
+  return text.replace(/[&<>"']/g, m => (
+    { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" }[m]
+  ));
+}
+
+document.addEventListener("DOMContentLoaded", loadReviews);
+</script>
+
 </body>
 </html>
