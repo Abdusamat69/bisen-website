@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car insurance</title>
+
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="inner.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- SEO -->
+  <meta name="description" content="Автоматизация автосферы — решения для бизнеса от Bisen.">
+
+  <style>
+    /* Основные стили */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      background: linear-gradient(180deg, #f8f9fa 0%, #fff5f5 100%);
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #b30000;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .intro h1 {
+      font-size: 36px;
+      color: #b30000;
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .card h3 {
+      color: #b30000;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #555;
+      margin-bottom: 0;
+    }
+
+    footer {
+      background-color: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 25px;
+      margin-top: 60px;
+      font-size: 14px;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <span style="color: white;">АВТОСТРАХОВАНИЕ</span> — Компания "Bisen"
+  </header>
+
+  <div class="container">
+    <section class="intro">
+      <h1>Услуги страхования</h1>
+      <p>
+        Рынок автострахования быстро меняется — и 2025 год показывает: клиенты ждут скорости, удобства и прозрачности.
+Сегодня онлайн-оформление стало стандартом, а не просто опцией.
+      </p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h3>ОСАГО для нерезидентов России</h3>
+        <p>Страхование автомобилей въезжающих в страну временного пребывания.</p>
+      </div>
+
+      <div class="card">
+        <h3>ОГПО для иностранных граждан</h3>
+        <p>Обязательная страховка для автомобилей, временно въезжающих на территорию Казахстана.</p>
+      </div>
+
+      <div class="card">
+        <h3>ДМС</h3>
+        <p>Добровольное медицинское страхование для нерезидентов РФ.</p>
+      </div>
+    </section>
+  </div>
+    <section id="feedback">
+      <h2>Свяжитесь с нами</h2>
+      <p>«Чтобы получить консультацию, свяжитесь с нами любым удобным способом.»</p>
+
+      <form action="https://formspree.io/f/mdkljpdv" method="POST" class="feedback-form" novalidate>
+        <div class="form-group">
+          <label for="name">Ваше имя</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Телефон</label>
+          <input id="phone" name="phone" type="tel" placeholder="+7...">
+        </div>
+        <div class="form-group">
+          <label for="message">Сообщение</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="form-submit-btn">Отправить</button>
+      </form>
+    </section>
+
+      <div class="contacts">
+        <a class="tel" href="tel:+77014110470">📞 Позвонить</a>
+        <a class="whatsapp" href="https://wa.me/77014110470" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="email" href="mailto:b.s.m@bk.ru">📧 Email</a>
+        <a class="telegram" href="https://t.me/samat_bisen" target="_blank" rel="noopener">✈ Telegram</a>
+        <a class="instagram" href="https://instagram.com/almaz_market_sarkamys" target="_blank" rel="noopener">📷 Instagram</a>
+      </div>
+
+    <div class="social-floating">
+      <a href="https://wa.me/77014110470" target="_blank" class="social-fab whatsapp">💬</a>
+      <a href="https://t.me/samat_bisen" target="_blank" class="social-fab telegram">✈</a>
+      <a href="https://instagram.com/almaz_market_sarkamys" target="_blank" class="social-fab instagram">📷</a>
+    </div>
+
+  <footer>
+    © 2025 Bisen | Все права защищены
+  </footer>
+</body>
+</html>
